@@ -1,22 +1,18 @@
 // move_semantics2.rs
-// Execute `rustlings hint move_semantics2` or use the `hint` watch subcommand for a hint.
+//
+// Make the test pass by finding a way to keep both Vecs separate!
+//
+// Execute `rustlings hint move_semantics2` or use the `hint` watch subcommand
+// for a hint.
 
-// Expected output:
-// vec0 has length 3 content `[22, 44, 66]`
-// vec1 has length 4 content `[22, 44, 66, 88]`
 
-
+#[test]
 fn main() {
-    let mut vec0 = Vec::new();
-    // Do not move the following line!
+    let vec0 = vec![22, 44, 66];
     let mut vec1 = fill_vec(&mut vec0);
 
-    // Do not change the following line!
-    println!("{} has length {} content `{:?}`", "vec0", vec0.len(), vec0);
-
-    vec1.push(88);
-
-    println!("{} has length {} content `{:?}`", "vec1", vec1.len(), vec1);
+    assert_eq!(vec0, vec![22, 44, 66]);
+    assert_eq!(vec1, vec![22, 44, 66, 88]);
 }
 
 fn fill_vec(vec: &mut Vec<i32>) -> Vec<i32> {
@@ -25,6 +21,7 @@ fn fill_vec(vec: &mut Vec<i32>) -> Vec<i32> {
     vec.push(22);
     vec.push(44);
     vec.push(66);
+    vec.push(88);
 
     vec.to_vec()
 }
